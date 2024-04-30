@@ -4,42 +4,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CATSHOP 013</title>
+    <title>CATSHOP 013 - CATS LIST</title>
+    <!-- Sertakan CSS Bootstrap -->
+    <link href="<?=base_url('assets/css/bootstrap.min.css')?>" rel="stylesheet">
+    <style>
+        .btn-home {
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>CATSHOP 013</h1>
-    <h3>CATS LIST</h3>
-    <a href="<?=base_url()?>"><h4>HOME</h4></a>
-    <hr>
-    <?=$this->session->flashdata('msg')?>
-    <a href="<?=site_url('cats013/add')?>">Add new cat</a>
-    <hr>
-    <table border="1">
-        <tr>
-            <th>No</th>
-            <th>Photo</th>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Gender</th>
-            <th>Age (month)</th>
-            <th>Price($)</th>
-            <th colspan="3">Action</th>
-        </tr>
-        <?php foreach($cats as $cat) { ?>
-        <tr>
-            <td><?=$i++?></td>
-            <td><img src="<?=base_url('uploads/cats/'.$cat->photo_cats_013)?>" style="border-radius:50%;" width="60" height="60"/>
-            <a class="nav-link" href="<?=site_url('Cats013/changephoto/'.$cat->id_013)?>">Change Photo</a></td>
-            <td><?=$cat->name_013?></td>
-            <td><?=$cat->type_013?></td>
-            <td><?=$cat->gender_013?></td>
-            <td><?=$cat->age_013?></td>
-            <td><?=$cat->price_013?></td>
-            <td><a href="<?=site_url('cats013/edit/'.$cat->id_013)?>">Edit</a></td>
-            <td><a href="<?=site_url('cats013/delete/'.$cat->id_013)?>"onclick="return confirm('Are you sure?')" >Delete</a></td>
-            <td><?php if($cat->sold_013==1) echo 'SOLD'; else { ?><a href="<?=site_url('cats013/sale/'.$cat->id_013)?>">SALE</a><?php } ?></td>
-        </tr><?php } ?>
-    </table>
-    <p><?=$this->pagination->create_links();?></p>
+    <?php $this->load->view('headers'); ?>
+    <div class="container mt-5">
+        <h1>CATSHOP 013</h1>
+        <h3>CATS LIST</h3>
+        <a href="<?=base_url()?>" class="btn btn-primary btn-home">HOME</a>
+        <hr>
+        <?=$this->session->flashdata('msg')?>
+        <a href="<?=site_url('cats013/add')?>" class="btn btn-success">Add new cat</a>
+        <hr>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>No</th>
+                    <th>Photo</th>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Gender</th>
+                    <th>Age (month)</th>
+                    <th>Price($)</th>
+                    <th colspan="3">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach($cats as $cat) { ?>
+                <tr>
+                    <td><?=$i++?></td>
+                    <td>
+                        <img src="<?=base_url('uploads/cats/'.$cat->photo_cats_013)?>" class="rounded-circle" width="60" height="60">
+                        <a class="nav-link" href="<?=site_url('Cats013/changephoto/'.$cat->id_013)?>">Change Photo</a>
+                    </td>
+                    <td><?=$cat->name_013?></td>
+                    <td><?=$cat->type_013?></td>
+                    <td><?=$cat->gender_013?></td>
+                    <td><?=$cat->age_013?></td>
+                    <td><?=$cat->price_013?></td>
+                    <td><a href="<?=site_url('cats013/edit/'.$cat->id_013)?>" class="btn btn-info">Edit</a></td>
+                    <td><a href="<?=site_url('cats013/delete/'.$cat->id_013)?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this cat?')">Delete</a></td>
+                    <td>
+                        <?php if($cat->sold_013==1) { ?>
+                            <span class="badge badge-secondary">SOLD</span>
+                        <?php } else { ?>
+                            <a href="<?=site_url('cats013/sale/'.$cat->id_013)?>" class="btn btn-success">SALE</a>
+                        <?php } ?>
+                    </td>
+                </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+        <p><?=$this->pagination->create_links();?></p>
+    </div>
+
+    <!-- Sertakan JavaScript Bootstrap -->
+    <script src="<?=base_url('assets/js/bootstrap.min.js')?>"></script>
 </body>
 </html>
