@@ -4,71 +4,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CATSHOP 013</title>
+    <title>CATSHOP 013 - CAT FORM</title>
+    <!-- Sertakan CSS Bootstrap -->
     <link href="<?=base_url('assets/css/bootstrap.min.css')?>" rel="stylesheet">
 </head>
 <body>
-    <h1>CATSHOP 013</h1>
-    <h3>CAT FORM</h3>
-    <hr>
-    <?php
-    $name='';
-    $type='';
-    $gender='';
-    $age='';
-    $price='';
+    <?php $this->load->view('headers'); ?>
+    <div class="container mt-5">
+        <h3>CAT FORM</h3>
+        <hr>
+        <?php
+        $name='';
+        $type='';
+        $gender='';
+        $age='';
+        $price='';
 
-    if(isset($cat)) {
-        $name=$cat->name_013;
-        $type=$cat->type_013;
-        $gender=$cat->gender_013;
-        $age=$cat->age_013;
-        $price=$cat->price_013;
-    }
-    ?>
-    <form action="" method="post">
-    <table>
-        <tr>
-            <td>Name</td>
-            <td><input type="text" name="name_013" value="<?=$name?>" required></td>
-        </tr>
-        <tr>
-            <td>Type</td>
-            <td><select name="type_013" required>
-                <option value="">Choose type</option>
-                <?php foreach($category as $cate) { ?>
-                <option value="<?=$cate->category_name_013?>" <?=set_select('type_013',$cate->category_name_013,$type==$cate->category_name_013?TRUE:
-                FALSE)?>><?=$cate->category_name_013?></option>
-                <?php } ?><!--
-                <option value="Domestic" <?=$type=='Domestic'?'selected':''?>>Domestic</option>
-                <option value="Angora" <?=$type=='Angora'?'selected':''?>>Angora</option>
-                <option value="Persia" <?=$type=='Persia'?'selected':''?>>Persia</option>-->
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>Gender</td>
-            <td>
-            <input type="radio" name="gender_013" value="Male" <?=$gender=='Male'?'checked':''?> required>Male
-            <input type="radio" name="gender_013" value="Female" <?=$gender=='Female'?'checked':''?> required>Female
-            </td>
-        </tr>
-        <tr>
-            <td>Age (month)</td>
-            <td><input type="number" name="age_013" value="<?=$age?>" required></td>
-        </tr>
-        <tr>
-            <td>Price ($)</td>
-            <td><input type="number" name="price_013" value="<?=$price?>" required></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-            <input type="submit" value="SAVE" name="submit">
-            <a href="<?=site_url('cats013')?>"><input type="button" value="CANCEL"></a>
-            </td>
-        </tr>
-    </table>  
-    </form>  
+        if(isset($cat)) {
+            $name=$cat->name_013;
+            $type=$cat->type_013;
+            $gender=$cat->gender_013;
+            $age=$cat->age_013;
+            $price=$cat->price_013;
+        }
+        ?>
+        <form action="" method="post">
+            <div class="form-group row">
+                <label for="name" class="col-sm-2 col-form-label">Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="name" name="name_013" value="<?=$name?>" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="type" class="col-sm-2 col-form-label">Type</label>
+                <div class="col-sm-10">
+                    <select class="form-control" id="type" name="type_013" required>
+                        <option value="">Choose type</option>
+                        <?php foreach($category as $cate) { ?>
+                            <option value="<?=$cate->category_name_013?>" <?=set_select('type_013',$cate->category_name_013,$type==$cate->category_name_013?TRUE:FALSE)?>><?=$cate->category_name_013?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Gender</label>
+                <div class="col-sm-10">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender_013" id="male" value="Male" <?=$gender=='Male'?'checked':''?> required>
+                        <label class="form-check-label" for="male">Male</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender_013" id="female" value="Female" <?=$gender=='Female'?'checked':''?> required>
+                        <label class="form-check-label" for="female">Female</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="age" class="col-sm-2 col-form-label">Age (month)</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="age" name="age_013" value="<?=$age?>" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="price" class="col-sm-2 col-form-label">Price ($)</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="price" name="price_013" value="<?=$price?>" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-10 offset-sm-2">
+                    <input type="submit" class="btn btn-primary" value="SAVE" name="submit">
+                    <a href="<?=site_url('cats013')?>" class="btn btn-secondary">CANCEL</a>
+                </div>
+            </div>
+        </form>
+    </div>
 </body>
 </html>

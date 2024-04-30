@@ -16,9 +16,7 @@
 <body>
     <?php $this->load->view('headers'); ?>
     <div class="container mt-5">
-        <h1>CATSHOP 013</h1>
         <h3>CATS LIST</h3>
-        <a href="<?=base_url()?>" class="btn btn-primary btn-home">HOME</a>
         <hr>
         <?=$this->session->flashdata('msg')?>
         <a href="<?=site_url('cats013/add')?>" class="btn btn-success">Add new cat</a>
